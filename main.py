@@ -71,6 +71,7 @@ def verificar_jogada_valida(jogada_col, jogada_lin, jogador):
         # Verificando se o index da matriz já foi preenchido.
         if tabuleiro[jogada_lin][jogada_col] != "_":
             print(f"O jogador {tabuleiro[jogada_lin][jogada_col]} já jogou nessa posição.")
+            time.sleep(2)
             
             # Se o index já foi preenchido retorna falso.
             return False
