@@ -37,7 +37,7 @@ def verificar_vencedor():
     # Verifica se houve 3 valores iguais em cada coluna que sejam diferentes de _.
     for contador in range(3):
         if tabuleiro[0][contador]== tabuleiro[1][contador]== tabuleiro[2][contador] != "_":
-            return tabuleiro[0[contador]]
+            return tabuleiro[0][contador]
     
     # Verifica se houve 3 valores iguais da esquerda pra direita que sejam diferentes de _.
     if tabuleiro[0][0]== tabuleiro[1][1]== tabuleiro[2][2] != "_":
@@ -45,8 +45,8 @@ def verificar_vencedor():
     
 
     # Verifica se houve 3 valores iguais da direita para a esquerda que sejam diferentes de _.
-    if tabuleiro[2][2]== tabuleiro[1][1]== tabuleiro[0][0] != "_":
-        return tabuleiro[2][2]
+    if tabuleiro[2][0]== tabuleiro[1][1] == tabuleiro[0][2] != "_":
+        return tabuleiro[1][1]
     
     # Se nenhum dos valores acimas forem verdadeiros, retorna falso.
     return False
@@ -117,8 +117,8 @@ def loop_principal():
 
         #  Se não for um número inteiro retorna ao início do while para o jogador inserir um número válido.
         except Exception as e:
-            time.sleep(2)
             print("Digite uma coluna e linha válida. (0, 1 ou 2)")
+            time.sleep(2)
             continue
     
         # Chama a função que verifica se a jogada foi válida.
@@ -126,6 +126,7 @@ def loop_principal():
 
         # Se ela não for válida, retorna ao início do while para o jogador inserir um valor válido. 
         if jogadada_valida == False:
+            time.sleep(2)
             continue
         
         # Faz a lógica para definir o próximo jogador.
@@ -139,6 +140,8 @@ def loop_principal():
         # Valida se houve um vencedor na jogada atual.
         vencedor= verificar_vencedor()
         if vencedor != False:
+            print()
+            mostrar_tabuleiro()
             print()
             print(10*"~-",f'Parabéns {vencedor}, você venceu!',10*"~-")
            
@@ -188,7 +191,7 @@ while True:
     print()
     
     #  Após o loop principal se encerrar o jogador poderá escolher se deseja jogar novamente.
-    continuar = input("Deseja iniciar um novo jogo? \nDigite S para SIM e N para NÃO: ").upper()
+    continuar = input("Deseja iniciar um novo jogo? \nDigite S para SIM ou qualquer tecla para NÃO: ").upper()
 
     # Caso os jogadores desejarem, o tabuleiro será reiniciado, assim como o jogo.
     if continuar == 'S':
